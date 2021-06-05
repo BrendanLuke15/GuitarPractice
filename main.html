@@ -93,18 +93,22 @@
             var string = Math.floor(Math.random() * 6); // which string note is on
             var fret = Math.floor(Math.random() * 15); // which fret note is on
 
-            console.log(string);
+            //console.log(string);
 
             fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-            fretBoard[string] = ("------").concat(fret,"------");
+            if (fret > 9) {
+                fretBoard[string] = ("------").concat(fret,"-----");
+            } else {
+                fretBoard[string] = ("------").concat(fret,"------");
+            }
 
             document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],"<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]);
         }
 
         function MultiNote() {
             var numNotes = document.getElementById('numNotes').value;
-            if (parseInt(numNotes) > 13) {
-                alert("Input number too large! (Max 13)");
+            if (parseInt(numNotes) > 7) {
+                alert("Input number too large! (Max 7)");
             } else {
                 var string = new Array(parseInt(numNotes)); // which string note is on Array
                 var fret = new Array(parseInt(numNotes)); // which fret note is on Array
@@ -113,6 +117,10 @@
                     string[i] = Math.floor(Math.random() * 6); // which string note is on
                     fret[i] = Math.floor(Math.random() * 15); // which fret note is on                    
                 }
+
+                fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
+
+
             }
             
 
@@ -126,6 +134,22 @@
 
             document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],"<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]);
             */
-        }       
+        }
+
+        var update = setInterval(SingleNote, 2000);
+        
+        /*
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+        const context = new AudioContext();
+
+        navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+        const microphone = context.createMediaStreamSource(stream);
+        const filter = context.createBiquadFilter();
+        // microphone -> filter -> destination
+        microphone.connect(filter);
+        filter.connect(context.destination);
+        });
+        */
     </script>
 </html>
