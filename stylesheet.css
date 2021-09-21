@@ -56,6 +56,12 @@ button#melodyNotes {
     background-color: #dddddd;
     padding: 0;
 }
+#header button:hover {
+    border-color: #003985;
+    color: #fff;
+    background-color: #222;
+    transition-duration: 0.25s;
+}
 input {
     position: relative;
     left: 23vw;

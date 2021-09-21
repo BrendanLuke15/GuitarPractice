@@ -7,24 +7,25 @@ Scope: note generation functions for guitar practice tool
 function SingleNote() {
     var string = Math.floor(Math.random() * 6); // which string note is on
     var fret = Math.floor(Math.random() * 15); // which fret note is on
-
-    //console.log(string);
-
     fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-    if (fret > 9) {
+    if (fret > 9) { // add tab to fretboard
         fretBoard[string] = ("------").concat(fret,"-----");
     } else {
         fretBoard[string] = ("------").concat(fret,"------");
     }
-
-    document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],"<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]);
+    document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],...
+    "<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]); // add fretboard to page
 }
 
 function MultiNote() {
-    var numNotes = document.getElementById('numNotes').value;
-    if (parseInt(numNotes) > 7) {
+    var numNotes = document.getElementById('numNotes').value; // input value
+    if (parseInt(numNotes) > 7) { // too big input
         alert("Input number too large! (Max 7)");
-    } else {
+    } else if (numNotes === "") { // empty input
+        alert("No input number! (Max 7)");
+    } else if (parseInt(numNotes) === 1) {
+        SingleNote(); // just call SingleNote if numNotes is 1
+    } else { // input between 2 and 7
         var string = new Array(parseInt(numNotes)); // which string note is on Array
         var fret = new Array(parseInt(numNotes)); // which fret note is on Array
 
@@ -37,18 +38,6 @@ function MultiNote() {
 
 
     }
-    
-
-
-    /*
-    var string = Math.floor(Math.random() * 5); // which string note is on
-    var fret = Math.floor(Math.random() * 14); // which fret note is on
-
-    fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-    fretBoard[string] = ("------").concat(fret,"------");
-
-    document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],"<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]);
-    */
 }
 
 var update = setInterval(SingleNote, 2000);
