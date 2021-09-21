@@ -1,0 +1,68 @@
+/*
+By: Brendan Luke
+Date: September 21, 2021
+Scope: stylsheet for guitar practice tool
+*/
+
+html {
+    background-color: #A7A7A7;
+    padding: 0;
+    margin: 0;
+}
+#tab {
+    font-size: 12vh;
+    line-height: 7vh;
+    font-family: monospace;
+    text-align: center;
+    position: absolute;
+    width: 60vw;
+    height: 60vh;
+    margin: 10vh 10vw;
+}
+#header {
+    background-color: #0075d3;
+    height: 7vh;
+    padding: 0;
+    margin: 0;
+}
+button#singleNote {
+    width: 30vw;
+    position: relative;
+    left: 5vw;
+    height: 5vh;
+    top: 0.5vh;
+    font-size: 4vh;
+    line-height: 4vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 1vh;
+    border: 0.5vh solid #00d477;
+    background-color: #dddddd;
+    padding: 0;
+}
+button#melodyNotes {
+    width: 30vw;
+    position: relative;
+    left: 15vw;
+    height: 5vh;
+    top: 0.5vh;
+    font-size: 4vh;
+    line-height: 4vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 1vh;
+    border: 0.5vh solid #00d477;
+    background-color: #dddddd;
+    padding: 0;
+}
+input {
+    position: relative;
+    left: 25vw;
+    top: 0.5vh;
+    font-size: 3vh;
+    height: 4vh;
+    line-height: 4vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 1vh;
+    border: 0.5vh solid #003985;
+    width: 8vw;
+    padding: 0;
+}
