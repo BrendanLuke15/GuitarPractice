@@ -7,86 +7,21 @@
         <meta name="author" content="Brendan Luke">
         <meta name="description" content="For practicing single notes on guitar">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="Guitar-icon.png"/>
         <link rel="shortcut icon" type="image/png" href="guitar-bass-icon.png"/>
         <!-- https://iconarchive.com/show/free-flat-sample-icons-by-thesquid.ink/guitar-bass-icon.html -->
-        <!-- https://iconarchive.com/show/flat-icons-by-flat-icons.com/Guitar-icon.html -->
         <link rel="stylesheet" href="stylesheet.css"/>
+        <script src="note-generation.js" async></script>
     </head>
-    <body style="margin: 0;">
+    <body>
         <div id="header">
             <button id="singleNote" onclick="SingleNote()">Individual Note</button>
             <button id="melodyNotes" onclick="MultiNote()">Multiple Notes</button>
             <input id="numNotes" type="text" value="# notes">
         </div>
-        <div id="housing" style="width: 80vw; height: 80vh; background-color: #f0f0f0; margin: 6vh 10vw 5vh; border-radius:3vh; padding: 0; position: relative;">
+        <div id="housing">
             <p id="tab">
                 -------------<br>-------------<br>-------------<br>-------------<br>-------------<br>-------------
             </p>
         </div>
     </body>
-    <script>
-        function SingleNote() {
-            var string = Math.floor(Math.random() * 6); // which string note is on
-            var fret = Math.floor(Math.random() * 15); // which fret note is on
-
-            //console.log(string);
-
-            fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-            if (fret > 9) {
-                fretBoard[string] = ("------").concat(fret,"-----");
-            } else {
-                fretBoard[string] = ("------").concat(fret,"------");
-            }
-
-            document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],"<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]);
-        }
-
-        function MultiNote() {
-            var numNotes = document.getElementById('numNotes').value;
-            if (parseInt(numNotes) > 7) {
-                alert("Input number too large! (Max 7)");
-            } else {
-                var string = new Array(parseInt(numNotes)); // which string note is on Array
-                var fret = new Array(parseInt(numNotes)); // which fret note is on Array
-
-                for (i = 0; i < parseInt(numNotes)-1; i++) {
-                    string[i] = Math.floor(Math.random() * 6); // which string note is on
-                    fret[i] = Math.floor(Math.random() * 15); // which fret note is on                    
-                }
-
-                fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-
-
-            }
-            
-
-
-            /*
-            var string = Math.floor(Math.random() * 5); // which string note is on
-            var fret = Math.floor(Math.random() * 14); // which fret note is on
-
-            fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-            fretBoard[string] = ("------").concat(fret,"------");
-
-            document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],"<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]);
-            */
-        }
-
-        var update = setInterval(SingleNote, 2000);
-        
-        /*
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-        const context = new AudioContext();
-
-        navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-        const microphone = context.createMediaStreamSource(stream);
-        const filter = context.createBiquadFilter();
-        // microphone -> filter -> destination
-        microphone.connect(filter);
-        filter.connect(context.destination);
-        });
-        */
-    </script>
 </html>
