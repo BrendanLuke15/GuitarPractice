@@ -28,17 +28,24 @@ function MultiNote() {
     } else { // input between 2 and 7
         var string = new Array(parseInt(numNotes)); // which string note is on Array
         var fret = new Array(parseInt(numNotes)); // which fret note is on Array
+        var stringCount = new Array(0,0,0,0,0,0); // count of notes on each string
+        //fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"]; // initialize fretboard
 
         for (i = 0; i < parseInt(numNotes)-1; i++) {
             string[i] = Math.floor(Math.random() * 6); // which string note is on
-            fret[i] = Math.floor(Math.random() * 15); // which fret note is on                    
+            fret[i] = Math.floor(Math.random() * 15); // which fret note is on
+            stringCount[string[i]] = stringCount[string[i]] + 1; // count of notes on each string      
         }
-
-        fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
-
-
     }
 }
+
+// which characters to place notes in (zero indexed)
+const placementMask = [[5,7],             // 2 notes
+                       [4,6,8],         // 3 notes
+                       [3,5,7,9],       // 4 notes
+                       [2,4,6,8,10],     // 5 notes
+                       [1,3,5,7,9,11],   // 6 notes
+                       [0,2,4,6,8,10,12]];  // 7 notes
 
 var update = setInterval(SingleNote, 2000);
 
