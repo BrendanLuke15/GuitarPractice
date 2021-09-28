@@ -40,7 +40,7 @@ n = 4096
 y = [0]*n
 t = [0]*n
 A = 3500
-B = 2100
+B = 220
 C = 5900
 fs = 48000 # sampling frequency (Hz)
 i = 0
@@ -52,12 +52,16 @@ for x in range(n):
 
 result = fft(t,y)
 
-plt.plot(result['Frequencies'],result['Gains'])
+#plt.plot(result['Frequencies'],result['Gains'])
+plt.semilogx(result['Frequencies'],result['Gains'])
 plt.grid()
 plt.xlabel('Frequencies (Hz)')
 plt.ylabel('Normalized Gain')
 plt.ylim((0,1))
 plt.xlim((0,fs/2))
+plt.axvline(x=A,color='k', linestyle='--', linewidth='0.5')
+plt.axvline(x=B,color='k', linestyle='--', linewidth='0.5')
+plt.axvline(x=C,color='k', linestyle='--', linewidth='0.5')
 
 # Stop Clock & Show plot
 print('Done! Execution took ' + str(datetime.now() - startTime))
