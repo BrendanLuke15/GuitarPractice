@@ -11,17 +11,21 @@
         <!-- https://iconarchive.com/show/free-flat-sample-icons-by-thesquid.ink/guitar-bass-icon.html -->
         <link rel="stylesheet" href="stylesheet.css"/>
         <script src="note-generation.js" async></script>
+        <script src="FFT-AudioCapture.js" async></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js" async></script>
     </head>
     <body>
         <div id="header">
             <button id="singleNote" onclick="SingleNote()">Individual Note</button>
             <button id="melodyNotes" onclick="MultiNote()">Multiple Notes</button>
-            <input id="numNotes" type="text" placeholder="# notes">
+            <input id="numNotes" type="text" placeholder="# notes" style="text-align: center;">
         </div>
-        <div id="housing">
-            <p id="tab">
-                -------------<br>-------------<br>-------------<br>-------------<br>-------------<br>-------------
-            </p>
+        <div id="chartHouse">
+            <button onclick="buttonForce()">Click Me!</button>
+            <canvas id="chart"></canvas>
+        </div>
+        <div id="tabHousing">
+            <p id="tab"></p>
         </div>
     </body>
 </html>

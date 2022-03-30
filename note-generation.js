@@ -4,10 +4,12 @@ Date: September 21, 2021
 Scope: note generation functions for guitar practice tool
 */
 
+var baseFret = Array(17).fill('-').join(''); // can change nubmer of dashs
+
 function SingleNote() {
     var string = Math.floor(Math.random() * 6); // which string note is on
-    var fret = Math.floor(Math.random() * 15); // which fret note is on
-    fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"];
+    var fret = Math.floor(Math.random() * 12); // which fret note is on
+    fretBoard = [baseFret,baseFret,baseFret,baseFret,baseFret,baseFret];
     if (fret > 9) { // add tab to fretboard
         fretBoard[string] = ("------").concat(fret,"-----");
     } else {
@@ -29,7 +31,6 @@ function MultiNote() {
         var string = new Array(parseInt(numNotes)); // which string note is on Array
         var fret = new Array(parseInt(numNotes)); // which fret note is on Array
         var stringCount = new Array(0,0,0,0,0,0); // count of notes on each string
-        //fretBoard = ["-------------","-------------","-------------","-------------","-------------","-------------"]; // initialize fretboard
 
         for (i = 0; i < parseInt(numNotes)-1; i++) {
             string[i] = Math.floor(Math.random() * 6); // which string note is on

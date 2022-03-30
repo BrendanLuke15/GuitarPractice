@@ -13,14 +13,15 @@ body {
     margin: 0;
 }
 #tab {
-    font-size: 12vh;
-    line-height: 10vh;
+    font-size: 9vh;
+    line-height: 7vh;
     font-family: monospace;
     text-align: center;
-    position: absolute;
-    width: 60vw;
+    /*position: absolute;*/
+    /*width: 60vw;*/
     height: 60vh;
-    margin: 10vh 15vw;
+    margin-top: 10vh;
+    /*margin: 10vh 15vw;*/
 }
 #header {
     background-color: #0075d3;
@@ -75,12 +76,33 @@ input {
     width: 10vw;
     padding: 0;
 }
-#housing {
-    width: 90vw;
+#chartHouse {
+    width: 25vw;
     height: 80vh;
     background-color: #f0f0f0;
-    margin: 4vh 5vw 6vh;
+    margin: 4vh 1vw 6vh;
     border-radius:3vh;
     padding: 0;
-    position: relative;
+    position: fixed;
+    left: 0;
+}
+#chartHouse canvas {
+    width: 95%;
+    height: 98%;
+    background-color: #fff;
+    margin: 1vh 1vw 1vh;
+    border-radius:3vh;
+    padding: 5px;
+    display: flex;
+    position: absolute;
+}
+#tabHousing {
+    width: 70vw;
+    height: 80vh;
+    background-color: #f0f0f0;
+    margin: 4vh 1vw 6vh;
+    border-radius:3vh;
+    padding: 0;
+    position: absolute;
+    right: 0;
 }
