@@ -4,51 +4,62 @@ Date: September 21, 2021
 Scope: note generation functions for guitar practice tool
 */
 
-var baseFret = Array(17).fill('-').join(''); // can change nubmer of dashs
+var numDashes = 19; // length of tab
+var baseFret = Array(numDashes).fill('-').join(''); // can change number of dashs
 
 function SingleNote() {
     var string = Math.floor(Math.random() * 6); // which string note is on
-    var fret = Math.floor(Math.random() * 12); // which fret note is on
+    var fret = Math.floor(Math.random() * 15); // which fret note is on
+
     fretBoard = [baseFret,baseFret,baseFret,baseFret,baseFret,baseFret];
-    if (fret > 9) { // add tab to fretboard
-        fretBoard[string] = ("------").concat(fret,"-----");
+    if (fret > 9) { // add note to tab
+        fretBoard[string] = (Array((numDashes-1)/2).fill('-').join('')).concat(fret,Array((numDashes-1)/2-1).fill('-').join(''));
     } else {
-        fretBoard[string] = ("------").concat(fret,"------");
+        fretBoard[string] = (Array((numDashes-1)/2).fill('-').join('')).concat(fret,Array((numDashes-1)/2).fill('-').join(''));
     }
     document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],...
-    "<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]); // add fretboard to page
+    "<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]); // add tab to page
 }
 
 function MultiNote() {
     var numNotes = document.getElementById('numNotes').value; // input value
-    if (parseInt(numNotes) > 7) { // too big input
-        alert("Input number too large! (Max 7)");
+    if (parseInt(numNotes) > 6) { // too big input
+        alert("Input number too large! (Max 6)");
     } else if (numNotes === "") { // empty input
-        alert("No input number! (Max 7)");
+        alert("No input number! (Max 6)");
     } else if (parseInt(numNotes) === 1) {
         SingleNote(); // just call SingleNote if numNotes is 1
-    } else { // input between 2 and 7
+    } else { // input between 2 and 6
         var string = new Array(parseInt(numNotes)); // which string note is on Array
         var fret = new Array(parseInt(numNotes)); // which fret note is on Array
         var stringCount = new Array(0,0,0,0,0,0); // count of notes on each string
 
-        for (i = 0; i < parseInt(numNotes)-1; i++) {
+        // generate "melody"
+        for (i = 0; i < parseInt(numNotes); i++) {
             string[i] = Math.floor(Math.random() * 6); // which string note is on
             fret[i] = Math.floor(Math.random() * 15); // which fret note is on
             stringCount[string[i]] = stringCount[string[i]] + 1; // count of notes on each string      
         }
+        console.log(string);
+        console.log(fret);
+
+        // write to tab
+        fretBoard = [baseFret,baseFret,baseFret,baseFret,baseFret,baseFret];
+        var stringIndex = new Array(1,1,1,1,1,1); // keep track of notes on each string
+        for (i = 0; i < parseInt(numNotes); i++) {
+            var idx = stringIndex[string[i]]*Math.floor(numDashes/(stringCount[string[i]]+1)); // index to put note on string line
+            console.log(idx);
+            if (fret[i] > 9) { // add note to tab
+                fretBoard[string[i]] = fretBoard[string[i]].substring(0,idx-1) + fret[i] + fretBoard[string[i]].substring(0,idx+2);
+            } else {
+                fretBoard[string[i]] = fretBoard[string[i]].substring(0,idx-1) + fret[i] + fretBoard[string[i]].substring(0,idx+1);
+            }
+            stringIndex[string[i]] = stringIndex[string[i]] + 1; // increment string index
+        }
+        document.getElementById("tab").innerHTML = fretBoard[0].concat("<br>",fretBoard[1],"<br>",fretBoard[2],...
+        "<br>",fretBoard[3],"<br>",fretBoard[4],"<br>",fretBoard[5]); // add tab to page
     }
 }
-
-// which characters to place notes in (zero indexed)
-const placementMask = [[5,7],             // 2 notes
-                       [4,6,8],         // 3 notes
-                       [3,5,7,9],       // 4 notes
-                       [2,4,6,8,10],     // 5 notes
-                       [1,3,5,7,9,11],   // 6 notes
-                       [0,2,4,6,8,10,12]];  // 7 notes
-
-var update = setInterval(SingleNote, 2000);
 
 /*
 window.AudioContext = window.AudioContext || window.webkitAudioContext;

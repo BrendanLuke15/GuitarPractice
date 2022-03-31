@@ -38,7 +38,7 @@ function createChart(outData) {
     for (i = 0; i < n; i++) {
         freqs[i] = "";
     }
-    console.log(freqs)
+    //console.log(freqs)
     //var freqs = Array.from(Array(n/2).keys());
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -77,7 +77,7 @@ function createChart(outData) {
     });
 
     myChart.update();
-    console.log(myChart.data);
+    //console.log(myChart.data);
 };
 
 const plugin = {
