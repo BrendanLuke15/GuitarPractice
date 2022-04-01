@@ -31,6 +31,9 @@ for (k = 0; k < n; k++) {
 }
 
 result = FFT(y);
+var idx = y.reduce((a,b,i) => a[0] < b ? [b,i] : a, [Number.MIN_VALUE,-1]); // max y
+console.log(idx);
+console.log(idx[1]/n*fs);
 
 function createChart(outData) {
     var ctx = document.getElementById('chart').getContext('2d');
@@ -94,5 +97,13 @@ const plugin = {
 
 function buttonForce() {
     createChart(result);
+    let blobFile = new Blob([y], {type: 'text/plain'}); // creates new blob data type from 'csvString' string variable
+    // below creates file and downloads it to user's computer
+    var a = document.createElement("a"),
+    url = URL.createObjectURL(blobFile);
+    a.href = url;
+    a.download = "Test.txt";
+    document.body.appendChild(a);
+    a.click();
     //setTimeout(console.log(myChart),2000);
 };
